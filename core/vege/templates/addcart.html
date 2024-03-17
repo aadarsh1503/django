@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block start %}
+
+<script>
+    function redirectToPage(page) {
+        window.location.href = '/' + page + '/';
+    }
+  </script>
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Recipe Name</th>
+                <th scope="col">Recipe Descriptions</th>
+                <th scope="col">Recipe Price</th>
+                <th scope="col">Total</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ burger.receipe_name }}</td>
+                <td>{{ burger.receipe_descriptions }}</td>
+                <td>{{ burger.receipe_price }}</td>
+                <td>{{ burger.receipe_price }}</td>
+                <td>
+                    <!-- Add to Cart button -->
+                    <button type="button" onclick="redirectToPage('payment')" class="btn btn-success mr-2 mb-2">Buy Now</button>
+                    <a href="{% url 'addcart' id=burger.id %}" ></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block start %}
+
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Recipe Name</th>
+                <th scope="col">Recipe Descriptions</th>
+                <th scope="col">Recipe Price</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ burger.receipe_name }}</td>
+                <td>{{ burger.receipe_descriptions }}</td>
+                <td>{{ burger.receipe_price }}</td>
+                <td>{{ burger.receipe_price }}</td>
+                <td>
+                    <!-- Add to Cart button -->
+                    <a href="{% url 'addcart' id=burger.id %}"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    function get_correct_price(user_burger){
+        console.log((user_burger))
+    }
+</script>
+{% endblock %}

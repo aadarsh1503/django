@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block start %}
+
+<div class="container mt-5">
+
+    <form class="col-6 mx-auto  card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+       {% csrf_token %}
+
+       <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        
+        .rating-container {
+            display: inline-block;
+        }
+
+        .rating-star {
+            font-size: 24px;
+            cursor: pointer;
+            color: #ccc;
+        }
+
+        .rating-star:hover,
+        .rating-star.active {
+            color: #ffcc00;
+        }
+
+        #result {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Recipe Rating</h1>
+
+<div class="rating-container" id="rating-container">
+    <span class="rating-star" onclick="rateRecipe(1)" id="star1">★</span>
+    <span class="rating-star" onclick="rateRecipe(2)" id="star2">★</span>
+    <span class="rating-star" onclick="rateRecipe(3)" id="star3">★</span>
+    <span class="rating-star" onclick="rateRecipe(4)" id="star4">★</span>
+    <span class="rating-star" onclick="rateRecipe(5)" id="star5">★</span>
+</div>
+
+<div id="result">Rate the recipe!</div>
+
+<script>
+    let currentRating = 0;
+
+    function rateRecipe(rating) {
+        currentRating = rating;
+
+        // Reset all stars
+        for (let i = 1; i <= 5; i++) {
+            const star = document.getElementById(`star${i}`);
+            star.classList.remove("active");
+        }
+
+        // Highlight selected stars
+        for (let i = 1; i <= rating; i++) {
+            const star = document.getElementById(`star${i}`);
+            star.classList.add("active");
+        }
+
+        // Display result
+        const resultElement = document.getElementById("result");
+        resultElement.innerText = `You rated the recipe ${rating} star${rating !== 1 ? 's' : ''}!`;
+    }
+</script>
+
+</body>
+</html>
+ 
+
+    </form>
+
+  
+       
+
+       {% endblock %}
